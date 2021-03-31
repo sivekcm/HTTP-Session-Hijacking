@@ -22,7 +22,7 @@
                          cache: false,
                          success: function(dataResult){
                              var dataResult1 = JSON.parse(dataResult);
-                             if(dataResult1.statusCode==200){
+                             if(dataResult1.statusCode==200) {
                                  window.location = "/home.php";
                              }
                              else if(dataResult1.statusCode==201){

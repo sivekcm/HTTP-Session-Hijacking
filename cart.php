@@ -28,10 +28,6 @@
     </div>
 </nav>
 
-  <div class="uk-position-center">
-    <h2 class="uk-heading-medium">Welcome!</h2>
-  </div>
-  <div class="uk-position-center uk-margin-large"><button class="uk-button uk-button-primary">Click Here To Start Shopping</button></div>
 
   </body>
 </html>
