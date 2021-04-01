@@ -15,6 +15,7 @@
           <li class="uk-parent"><a href="/home.php">Home</a></li>
           <li class="uk-active"><a href="/shop.php">Shop</a></li>
           <li class="uk-parent"><a href="/account.php">Account</a></li>
+          <li class="uk-paretn"><a href="/login.php">Logout</a></li>
         </ul>
     </div>
     <div class="uk-navbar-right">

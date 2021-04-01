@@ -3,11 +3,12 @@ include 'dbh.php';
 session_start();
 $email=$_POST['email'];
 $password=$_POST['password'];
-// $username="user1";
-// $password="password";
+
+
 $sql = "SELECT user_id FROM users WHERE email='$email' AND password='$password';";
 $result = mysqli_query($conn, $sql);
 if (mysqli_num_rows($result) == 1) {
+  //https://www.geeksforgeeks.org/generating-random-string-using-php/
     $user = mysqli_fetch_assoc($result);
     $characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
     $sessionID = '';

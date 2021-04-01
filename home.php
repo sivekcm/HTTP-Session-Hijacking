@@ -10,13 +10,14 @@
     <meta charset="utf-8">
     <title></title>
   </head>
-  <body>
+  <body style="background-color:grey;">
     <nav class="uk-navbar-container uk-navbar">
       <div class="uk-navbar-left">
           <ul class="uk-navbar-nav">
             <li class="uk-active"><a href="/home.php">Home</a></li>
             <li class="uk-parent"><a href="/shop.php">Shop</a></li>
             <li class="uk-parent"><a href="/account.php">Account</a></li>
+            <li class="uk-paretn"><a href="/login.php">Logout</a></li>
           </ul>
       </div>
       <div class="uk-navbar-right">
