@@ -2,6 +2,7 @@
   include 'dbh.php';
   session_start();
   $sessionID = $_COOKIE['Session_ID'];
+  $userID = $_SESSION['user_id'];
 ?>
 
 <!DOCTYPE html>
@@ -10,7 +11,41 @@
     <link rel="stylesheet" href="/css/uikit.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
     <script>
-      
+    $(document).ready(function() {
+       $("button").click(function(e) {
+           e.preventDefault();
+           $buttonID = e.target.id;
+           $first_name = $("#first_name").val();
+           $last_name = $("#last_name").val();
+           $email = $("#email").val();
+           $userID = <?php echo $userID ?>;
+
+               $.ajax({
+                   type: 'POST',
+                   url: 'update-account.php',
+                   data: {
+                       FirstName: $first_name,
+                       LastName: $last_name,
+                       Email: $email,
+                       UserID: $userID,
+                   },
+                   cache: false,
+                   success: function(dataResult){
+                       var dataResult = JSON.parse(dataResult);
+                       if(dataResult.statusCode==200){
+                           alert("Information Updated!");
+                           location.reload();
+
+                       }
+                       else if(dataResult.statusCode==201){
+                           alert("Error occured !");
+                       }
+                   }
+               });
+       });
+
+
+   });
     </script>
     <meta charset="utf-8">
     <title></title>
@@ -46,31 +81,35 @@
         $lastName = $user['last_name'];
         $email = $user['email'];
         echo "<form>";
-        echo "<fieldset class=\"uk-fieldset\">";
 
         echo "<label for=\"first_name\">";
         echo "First Name";
         echo "</label>";
         echo "<input class=\"uk-input\" type=\"text\" id=\"first_name\" value=\"$firstName\"/>";
-        echo "</fieldset>";
+
 
         echo "<label for=\"last_name\">";
         echo "Last Name";
         echo "</label>";
         echo "<input class=\"uk-input\" type=\"text\" id=\"last_name\" value=\"$lastName\"/>";
-        echo "</fieldset>";
+
 
         echo "<label for=\"email\">";
         echo "Email";
         echo "</label>";
         echo "<input class=\"uk-input\" type=\"text\" id=\"email\" value=\"$email\"/>";
-        echo "</fieldset>";
-
-        echo "</form>";
 
        ?>
-       <button class="uk-button uk-button-secondary uk-button-large uk-margin" type="submit" name="submit_changes" id="submit_changes">Update</button>
-       <button class="uk-button uk-button-danger uk-margin-large-left" type="button" name="reset_password" id="reset_password">Reset Password</button>
+     </form>
+       <button class="uk-button uk-button-secondary uk-button-large uk-margin" id="submit_changes">Update</button>
+
+
+       <form action="/reset-password.php">
+               <input class="uk-button uk-button-danger uk-margin-large-left" type="submit" value="Reset Password"/>
+       </form>
+
+
+
     </div>
   </div>
   </body>
