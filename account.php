@@ -11,6 +11,12 @@
     <link rel="stylesheet" href="/css/uikit.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
     <script>
+    function logout() {
+    $.ajax({
+         type: "POST",
+         url: 'logout.php',
+    });
+}
     $(document).ready(function() {
        $("button").click(function(e) {
            e.preventDefault();
@@ -57,7 +63,7 @@
           <li class="uk-parent"><a href="/home.php">Home</a></li>
           <li class="uk-parent"><a href="/shop.php">Shop</a></li>
           <li class="uk-active"><a href="/account.php">Account</a></li>
-          <li class="uk-paretn"><a href="/login.php">Logout</a></li>
+          <li class="uk-paretn"><a href="/login.php" onclick='document.cookie = "Session_ID=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";'>Logout</a></li>
         </ul>
     </div>
     <div class="uk-navbar-right">

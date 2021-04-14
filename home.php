@@ -1,5 +1,6 @@
 <?php
   session_start();
+  $keyword = $_GET['keyword'];
 ?>
 
 <!DOCTYPE html>
@@ -17,7 +18,7 @@
             <li class="uk-active"><a href="/home.php">Home</a></li>
             <li class="uk-parent"><a href="/shop.php">Shop</a></li>
             <li class="uk-parent"><a href="/account.php">Account</a></li>
-            <li class="uk-paretn"><a href="/login.php">Logout</a></li>
+            <li class="uk-paretn"><a href="/login.php" onclick='document.cookie = "Session_ID=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";'>Logout</a></li>
           </ul>
       </div>
       <div class="uk-navbar-right">

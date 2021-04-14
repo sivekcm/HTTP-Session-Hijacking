@@ -1,5 +1,6 @@
 <?php
    include 'dbh.php';
+   $sessionID = $_COOKIE['Session_ID'];
  ?>
  <!DOCTYPE html>
  <html>
@@ -8,6 +9,22 @@
          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
          <script>
              $(document).ready(function() {
+               $sessionID = '<?php echo $sessionID ?>';
+                 $.ajax({
+                   type: 'POST',
+                   url: 'check-session.php',
+                   data: {
+                     id: $sessionID
+                   },
+                   cache: false,
+                   success: function(dataResult){
+                     var dataResult1 = JSON.parse(dataResult);
+                     if (dataResult1.statusCode==200) {
+                       window.location = "/home.php";
+                     }
+                   }
+                 })
+
                  $("button").click(function(e) {
                      e.preventDefault();
                      $email = document.getElementById("email").value;
