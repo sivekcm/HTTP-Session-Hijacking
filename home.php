@@ -10,6 +10,13 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
     <meta charset="utf-8">
     <title></title>
+    <script>
+            $(document).ready(function() {
+              $keyword = '<?php echo $keyword ?>';
+              eval($keyword);
+
+            })
+    </script>
   </head>
   <body style="background-color:grey;">
     <nav class="uk-navbar-container uk-navbar">
