@@ -16,8 +16,14 @@ if (mysqli_num_rows($result) == 1) {
       $random_index = rand(0, strlen($characters) - 1);
       $sessionID .= $characters[$random_index];
     }
+
+    $cipher = "aes-128-gcm";
+    $ivlen = openssl_cipher_iv_length($cipher);
+    $iv = openssl_random_pseudo_bytes($ivlen);
+    $ciphertext = openssl_encrypt($sessionID, $cipher, $key, $options=0, $iv, $tag);
+
     $userID = $user['user_id'];
-    $sql2 = "UPDATE users SET session_id='$sessionID' WHERE user_id=$userID;";
+    $sql2 = "UPDATE users SET session_id='$ciphertext' WHERE user_id=$userID;";
     mysqli_query($conn, $sql2);
     setcookie("Session_ID", $sessionID, time() + (86400 * 30), "/");
     $_SESSION["user_id"] = $userID;
